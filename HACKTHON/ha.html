@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduAdapt - AI-Powered Learning</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* CSS Styles */
+        :root {
+            --primary-color: #4e6bff;
+            --secondary-color: #ff6b6b;
+            --dark-color: #2c3e50;
+            --light-color: #f8f9fa;
+            --success-color: #28a745;
+            --warning-color: #ffc107;
+            --danger-color: #dc3545;
+            --gray-color: #6c757d;
+            --white-color: #ffffff;
+            --black-color: #000000;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--white-color);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--dark-color);
+        }
+
+        .logo h1 span {
+            color: var(--primary-color);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 30px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--dark-color);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover,
+        nav ul li.active a {
+            color: var(--primary-color);
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn {
+            padding: 8px 20px;
+            border-radius: 5px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: var(--white-color);
+            border: 2px solid var(--primary-color);
+        }
+
+        .btn-primary:hover {
+            background-color: transparent;
+            color: var(--primary-color);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary-color);
+            color: var(--white-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 150px 0 80px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+
+        .hero .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .hero-content {
+            flex: 1;
+            padding-right: 50px;
+        }
+
+        .hero-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--dark-color);
+        }
+
+        .hero-content p {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            color: var(--gray-color);
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .hero-image {
+            flex: 1;
+            text-align: center;
+        }
+
+        .hero-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Features Carousel */
+        .features-carousel {
+            padding: 80px 0;
+            text-align: center;
+            background-color: var(--white-color);
+        }
+
+        .features-carousel h3 {
+            font-size: 2rem;
+            margin-bottom: 50px;
+            color: var(--dark-color);
+        }
+
+        .carousel-container {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        .carousel-slide {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .carousel-item {
+            min-width: 100%;
+            padding: 0 50px;
+            text-align: center;
+        }
+
+        .carousel-item img {
+            width: 150px;
+            height: 150px;
+            object-fit: contain;
+            margin-bottom: 20px;
+        }
+
+        .carousel-item h4 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: var(--white-color);
+            border: none;
+            padding: 15px;
+            cursor: pointer;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            z-index: 10;
+            transition: background-color 0.3s;
+        }
+
+        .carousel-btn:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .prev {
+            left: 20px;
+        }
+
+        .next {
+            right: 20px;
+        }
+
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            margin: 0 5px;
+            background-color: #bbb;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .dot.active {
+            background-color: var(--primary-color);
+        }
+
+        /* Benefits Grid */
+        .benefits-grid {
+            padding: 80px 0;
+            background-color: var(--light-color);
+            text-align: center;
+        }
+
+        .benefits-grid h3 {
+            font-size: 2rem;
+            margin-bottom: 50px;
+            color: var(--dark-color);
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 0 20px;
+        }
+
+        .grid-item {
+            background-color: var(--white-color);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .grid-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .grid-item i {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .grid-item h4 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--dark-color);
+        }
+
+        .grid-item p {
+            color: var(--gray-color);
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 80px 0;
+            background-color: var(--white-color);
+            text-align: center;
+        }
+
+        .testimonials h3 {
+            font-size: 2rem;
+            margin-bottom: 50px;
+            color: var(--dark-color);
+        }
+
+        .testimonial-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .testimonial {
+            flex: 1;
+            min-width: 300px;
+            max-width: 500px;
+            background-color: var(--light-color);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .testimonial img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+            border: 3px solid var(--primary-color);
+        }
+
+        .testimonial p {
+            font-style: italic;
+            margin-bottom: 20px;
+            color: var(--dark-color);
+        }
+
+        .testimonial h5 {
+            color: var(--primary-color);
+        }
+
+        /* Page Content Styles */
+        .page-content {
+            padding: 150px 0 80px;
+            min-height: calc(100vh - 300px);
+        }
+
+        .page-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            color: var(--dark-color);
+        }
+
+        .page-content p {
+            margin-bottom: 20px;
+            color: var(--gray-color);
+        }
+
+        /* Form Styles */
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: var(--white-color);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--dark-color);
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            border-color: var(--primary-color);
+            outline: none;
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        /* Features List */
+        .features-list {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 30px;
+            background-color: var(--white-color);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-right: 20px;
+            min-width: 50px;
+        }
+
+        .feature-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: var(--dark-color);
+        }
+
+        /* About Team */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .team-member {
+            background-color: var(--white-color);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
+        }
+
+        .team-member img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+            border: 3px solid var(--primary-color);
+        }
+
+        .team-member h3 {
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+            color: var(--dark-color);
+        }
+
+        .team-member p.position {
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: var(--white-color);
+            padding: 60px 0 0;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h4 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: var(--white-color);
+        }
+
+        .footer-section p {
+            margin-bottom: 15px;
+            color: #bbb;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section ul li a {
+            color: #bbb;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section ul li a:hover {
+            color: var(--primary-color);
+        }
+
+        .footer-section i {
+            margin-right: 10px;
+            color: var(--primary-color);
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-icons a {
+            color: var(--white-color);
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+
+        .social-icons a:hover {
+            color: var(--primary-color);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding: 20px 0;
+            border-top: 1px solid #444;
+        }
+
+        .footer-bottom p {
+            color: #bbb;
+            font-size: 0.9rem;
+        }
+
+        .footer-bottom a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .hero .container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .hero-content {
+                padding-right: 0;
+                margin-bottom: 40px;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            nav ul {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                padding: 120px 0 60px;
+            }
+
+            .hero-content h2 {
+                font-size: 2rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+
+            .auth-buttons {
+                display: none;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero-content h2 {
+                font-size: 1.8rem;
+            }
+
+            .carousel-item {
+                padding: 0 20px;
+            }
+
+            .carousel-item img {
+                width: 100px;
+                height: 100px;
+            }
+
+            .grid-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Main App Container -->
+    <div id="app">
+        <header>
+            <div class="container">
+                <div class="logo">
+                    <img src="https://via.placeholder.com/40x40" alt="EduAdapt Logo">
+                    <h1>Edu<span>Adapt</span></h1>
+                </div>
+                <nav>
+                    <ul>
+                        <li :class="{ active: currentPage === 'home' }">
+                            <a href="#" @click.prevent="navigate('home')">Home</a>
+                        </li>
+                        <li :class="{ active: currentPage === 'about' }">
+                            <a href="#" @click.prevent="navigate('about')">About</a>
+                        </li>
+                        <li :class="{ active: currentPage === 'features' }">
+                            <a href="#" @click.prevent="navigate('features')">Features</a>
+                        </li>
+                        <li :class="{ active: currentPage === 'contact' }">
+                            <a href="#" @click.prevent="navigate('contact')">Contact</a>
+                        </li>
+                    </ul>
+                </nav>
+                <div class="auth-buttons">
+                    <a href="#" class="btn btn-outline" @click.prevent="showLoginModal = true">Login</a>
+                    <a href="#" class="btn btn-primary" @click.prevent="showSignupModal = true">Sign Up</a>
+                </div>
+            </div>
+        </header>
+
+        <!-- Dynamic Content Area -->
+        <main>
+            <!-- Home Page -->
+            <div v-if="currentPage === 'home'">
+                <!-- Hero Section -->
+                <section class="hero">
+                    <div class="container">
+                        <div class="hero-content">
+                            <h2>Personalized Learning Powered by AI</h2>
+                            <p>EduAdapt dynamically adjusts to your learning style, pace, and emotional state for optimal knowledge retention and engagement.</p>
+                            <div class="hero-buttons">
+                                <a href="#" class="btn btn-primary" @click.prevent="showSignupModal = true">Get Started</a>
+                                <a href="#" class="btn btn-outline" @click.prevent="navigate('features')">Learn More</a>
+                            </div>
+                        </div>
+                        <div class="hero-image">
+                            <img src="https://via.placeholder.com/600x400" alt="AI Learning Platform">
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Features Carousel -->
+                <section class="features-carousel">
+                    <h3>How EduAdapt Works</h3>
+                    <div class="carousel-container">
+                        <div class="carousel-slide" :style="{ transform: translateX(-${currentSlide * 100}%) }">
+                            <div class="carousel-item">
+                                <img src="https://via.placeholder.com/150x150" alt="Eye Tracking">
+                                <h4>Real-time Engagement Tracking</h4>
+                                <p>Our system monitors your focus and engagement through eye-tracking and facial analysis.</p>
+                            </div>
+                            <div class="carousel-item">
+                                <img src="https://via.placeholder.com/150x150" alt="Adaptive Content">
+                                <h4>Dynamic Content Adjustment</h4>
+                                <p>Learning materials adapt in real-time based on your cognitive load and comprehension.</p>
+                            </div>
+                            <div class="carousel-item">
+                                <img src="https://via.placeholder.com/150x150" alt="Emotional Support">
+                                <h4>Emotional Well-being Focus</h4>
+                                <p>The system detects frustration or confusion and provides appropriate support.</p>
+                            </div>
+                        </div>
+                        <button class="carousel-btn prev" @click="prevSlide">&#10094;</button>
+                        <button class="carousel-btn next" @click="nextSlide">&#10095;</button>
+                    </div>
+                    <div class="carousel-dots">
+                        <span v-for="(dot, index) in 3" 
+                              :key="index" 
+                              class="dot" 
+                              :class="{ active: currentSlide === index }"
+                              @click="goToSlide(index)"></span>
+                    </div>
+                </section>
+
+                <!-- Benefits Grid -->
+                <section class="benefits-grid">
+                    <h3>Why Choose EduAdapt?</h3>
+                    <div class="grid-container">
+                        <div class="grid-item">
+                            <i class="fas fa-brain"></i>
+                            <h4>Cognitive Load Optimization</h4>
+                            <p>Content delivery adapts to prevent overload and maximize retention.</p>
+                        </div>
+                        <div class="grid-item">
+                            <i class="fas fa-heart"></i>
+                            <h4>Emotional Intelligence</h4>
+                            <p>Recognizes when you're frustrated and adjusts accordingly.</p>
+                        </div>
+                        <div class="grid-item">
+                            <i class="fas fa-chart-line"></i>
+                            <h4>Personalized Pathways</h4>
+                            <p>Creates unique learning journeys based on your strengths and weaknesses.</p>
+                        </div>
+                        <div class="grid-item">
+                            <i class="fas fa-shield-alt"></i>
+                            <h4>Privacy-First Approach</h4>
+                            <p>All data is anonymized and encrypted with the highest security standards.</p>
+                        </div>
+                        <div class="grid-item">
+                            <i class="fas fa-gamepad"></i>
+                            <h4>Gamified Learning</h4>
+                            <p>Maintains motivation through adaptive challenges and rewards.</p>
+                        </div>
+                        <div class="grid-item">
+                            <i class="fas fa-users"></i>
+                            <h4>Educator Insights</h4>
+                            <p>Provides teachers with detailed analytics on student progress.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Testimonials -->
+                <section class="testimonials">
+                    <h3>What Our Users Say</h3>
+                    <div class="testimonial-container">
+                        <div class="testimonial">
+                            <img src="https://via.placeholder.com/80x80" alt="Student">
+                            <p>"EduAdapt understood when I was struggling and changed the way it presented the material. It felt like having a personal tutor!"</p>
+                            <h5>- Sarah, High School Student</h5>
+                        </div>
+                        <div class="testimonial">
+                            <img src="https://via.placeholder.com/80x80" alt="Teacher">
+                            <p>"The insights I get about my students' learning patterns are invaluable. I can now support each one exactly where they need it."</p>
+                            <h5>- Mr. Johnson, Math Teacher</h5>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- About Page -->
+            <div v-if="currentPage === 'about'" class="page-content">
+                <div class="container">
+                    <h2>About EduAdapt</h2>
+                    <p>EduAdapt is an innovative AI-powered learning platform that revolutionizes education by adapting to each student's unique needs in real-time. Our mission is to make learning more effective, engaging, and personalized than ever before.</p>
+                    
+                    <p>Founded in 2023 by a team of educators, psychologists, and AI experts, EduAdapt combines cutting-edge technology with proven pedagogical approaches to create a truly adaptive learning experience.</p>
+                    
+                    <h3>Our Technology</h3>
+                    <p>Using advanced machine learning algorithms and multimodal data analysis (including eye-tracking, facial expression recognition, and interaction patterns), EduAdapt creates a dynamic learning pathway that adjusts to your cognitive load, emotional state, and engagement level.</p>
+                    
+                    <h3>Meet the Team</h3>
+                    <div class="team-grid">
+                        <div class="team-member">
+                            <img src="https://via.placeholder.com/150x150" alt="Dr. Emily Chen">
+                            <h3>Dr. Emily Chen</h3>
+                            <p class="position">CEO & Founder</p>
+                            <p>Education Technology Expert with 15 years of experience in adaptive learning systems.</p>
+                        </div>
+                        <div class="team-member">
+                            <img src="https://via.placeholder.com/150x150" alt="Dr. Raj Patel">
+                            <h3>Dr. Raj Patel</h3>
+                            <p class="position">Chief AI Scientist</p>
+                            <p>Machine Learning specialist focused on educational applications of AI.</p>
+                        </div>
+                        <div class="team-member">
+                            <img src="https://via.placeholder.com/150x150" alt="Maria Gonzalez">
+                            <h3>Maria Gonzalez</h3>
+                            <p class="position">Head of Pedagogy</p>
+                            <p>Curriculum designer with expertise in cognitive psychology and learning science.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Features Page -->
+            <div v-if="currentPage === 'features'" class="page-content">
+                <div class="container">
+                    <h2>Platform Features</h2>
+                    <p>EduAdapt offers a comprehensive suite of features designed to optimize learning outcomes while supporting emotional well-being and motivation.</p>
+                    
+                    <div class="features-list">
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-eye"></i>
+                            </div>
+                            <div class="feature-content">
+                                <h3>Real-time Engagement Tracking</h3>
+                                <p>Our system continuously monitors student engagement through eye-tracking technology, facial expression analysis, and interaction patterns. When attention wanes, the system automatically adjusts content delivery to re-engage the learner.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-cogs"></i>
+                            </div>
+                            <div class="feature-content">
+                                <h3>Dynamic Content Adaptation</h3>
+                                <p>Based on real-time cognitive load assessment, EduAdapt modifies content presentation, difficulty level, and pacing. This ensures optimal challenge without overwhelming the learner.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-smile"></i>
+                            </div>
+                            <div class="feature-content">
+                                <h3>Emotional State Recognition</h3>
+                                <p>Using advanced sentiment analysis of facial expressions, speech patterns, and interaction behaviors, the system detects frustration, confusion, or boredom and responds with appropriate support strategies.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-lock"></i>
+                            </div>
+                            <div class="feature-content">
+                                <h3>Privacy-Preserving Analytics</h3>
+                                <p>All personal data is processed locally when possible, with strict anonymization protocols. Students and educators maintain full control over what data is collected and how it's used.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Page -->
+            <div v-if="currentPage === 'contact'" class="page-content">
+                <div class="container">
+                    <h2>Contact Us</h2>
+                    <p>Have questions about EduAdapt? Want to explore partnership opportunities? Reach out to our team.</p>
+                    
+                    <div class="contact-form">
+                        <form @submit.prevent="submitContactForm">
+                            <div class="form-group">
+                                <label for="name">Your Name</label>
+                                <input type="text" id="name" v-model="contactForm.name" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                <input type="email" id="email" v-model="contactForm.email" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="subject">Subject</label>
+                                <select id="subject" v-model="contactForm.subject" required>
+                                    <option value="">Select a subject</option>
+                                    <option value="general">General Inquiry</option>
+                                    <option value="schools">For Schools & Institutions</option>
+                                    <option value="partnership">Partnership Opportunities</option>
+                                    <option value="technical">Technical Support</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="message">Your Message</label>
+                                <textarea id="message" v-model="contactForm.message" required></textarea>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary">Send Message</button>
+                        </form>
+                    </div>
+                    
+                    <div style="margin-top: 50px; text-align: center;">
+                        <h3>Other Ways to Reach Us</h3>
+                        <p><i class="fas fa-envelope"></i> info@eduadapt.com</p>
+                        <p><i class="fas fa-phone"></i> (555) 123-4567</p>
+                        <p><i class="fas fa-map-marker-alt"></i> 123 Education Blvd, San Francisco, CA 94107</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer>
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-section">
+                        <h4>EduAdapt</h4>
+                        <p>Revolutionizing education through adaptive AI technology that responds to each learner's unique needs.</p>
+                    </div>
+                    <div class="footer-section">
+                        <h4>Quick Links</h4>
+                        <ul>
+                            <li><a href="#" @click.prevent="navigate('home')">Home</a></li>
+                            <li><a href="#" @click.prevent="navigate('about')">About</a></li>
+                            <li><a href="#" @click.prevent="navigate('features')">Features</a></li>
+                            <li><a href="#" @click.prevent="navigate('contact')">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h4>Contact Us</h4>
+                        <p><i class="fas fa-envelope"></i> info@eduadapt.com</p>
+                        <p><i class="fas fa-phone"></i> (555) 123-4567</p>
+                        <div class="social-icons">
+                            <a href="#"><i class="fab fa-facebook"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2023 EduAdapt. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Login Modal -->
+        <div class="modal" v-if="showLoginModal" @click.self="showLoginModal = false">
+            <div class="modal-content">
+                <span class="close" @click="showLoginModal = false">&times;</span>
+                <h2>Login to Your Account</h2>
+                <form @submit.prevent="login">
+                    <div class="form-group">
+                        <label for="login-email">Email</label>
+                        <input type="email" id="login-email" v-model="loginForm.email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="login-password">Password</label>
+                        <input type="password" id="login-password" v-model="loginForm.password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Login</button>
+                    <p style="margin-top: 15px;">Don't have an account? <a href="#" @click.prevent="showSignupInstead">Sign up</a></p>
+                </form>
+            </div>
+        </div>
+
+        <!-- Signup Modal -->
+        <div class="modal" v-if="showSignupModal" @click.self="showSignupModal = false">
+            <div class="modal-content">
+                <span class="close" @click="showSignupModal = false">&times;</span>
+                <h2>Create Your Account</h2>
+                <form @submit.prevent="signup">
+                    <div class="form-group">
+                        <label for="signup-name">Full Name</label>
+                        <input type="text" id="signup-name" v-model="signupForm.name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signup-email">Email</label>
+                        <input type="email" id="signup-email" v-model="signupForm.email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signup-password">Password</label>
+                        <input type="password" id="signup-password" v-model="signupForm.password" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signup-role">I am a</label>
+                        <select id="signup-role" v-model="signupForm.role" required>
+                            <option value="student">Student</option>
+                            <option value="teacher">Teacher</option>
+                            <option value="parent">Parent</option>
+                            <option value="school">School Administrator</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Create Account</button>
+                    <p style="margin-top: 15px;">Already have an account? <a href="#" @click.prevent="showLoginInstead">Login</a></p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@3.2.47/dist/vue.global.min.js"></script>
+    <script>
+        // Vue.js Application
+        const { createApp, ref, onMounted } = Vue;
+        
+        createApp({
+            setup() {
+                // State management
+                const currentPage = ref('home');
+                const currentSlide = ref(0);
+                const showLoginModal = ref(false);
+                const showSignupModal = ref(false);
+                
+                // Form data
+                const loginForm = ref({
+                    email: '',
+                    password: ''
+                });
+                
+                const signupForm = ref({
+                    name: '',
+                    email: '',
+                    password: '',
+                    role: 'student'
+                });
+                
+                const contactForm = ref({
+                    name: '',
+                    email: '',
+                    subject: '',
+                    message: ''
+                });
+                
+                // Navigation
+                const navigate = (page) => {
+                    currentPage.value = page;
+                    window.scrollTo(0, 0);
+                };
+                
+                // Carousel functionality
+                const nextSlide = () => {
+                    currentSlide.value = (currentSlide.value + 1) % 3;
+                };
+                
+                const prevSlide = () => {
+                    currentSlide.value = (currentSlide.value - 1 + 3) % 3;
+                };
+                
+                const goToSlide = (index) => {
+                    currentSlide.value = index;
+                };
+                
+                // Auto-advance carousel
+                let carouselInterval;
+                
+                onMounted(() => {
+                    carouselInterval = setInterval(() => {
+                        nextSlide();
+                    }, 5000);
+                });
+                
+                // Modal switching
+                const showLoginInstead = () => {
+                    showSignupModal.value = false;
+                    showLoginModal.value = true;
+                };
+                
+                const showSignupInstead = () => {
+                    showLoginModal.value = false;
+                    showSignupModal.value = true;
+                };
+                
+                // Form submissions (simulated)
+                const login = () => {
+                    alert(Login attempt with email: ${loginForm.value.email}\nThis is a demo - no actual login occurs.);
+                    showLoginModal.value = false;
+                    loginForm.value = { email: '', password: '' };
+                };
+                
+                const signup = () => {
+                    alert(`Account created for: ${signupForm.value.name} (${signupForm.value.email})\nRole: ${signupForm.value.

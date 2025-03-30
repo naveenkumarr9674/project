@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI-Driven Educational Platform</title>
+  <style>
+    /* Global Styles */
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f7fb;
+      color: #333;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    h1, h2, h3 {
+      font-family: 'Roboto', sans-serif;
+      color: #2c3e50;
+    }
+
+    /* Header Styles */
+    header {
+      background-color: #1abc9c;
+      color: white;
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 3.5rem;
+      margin-bottom: 10px;
+    }
+
+    header p {
+      font-size: 1.5rem;
+      font-weight: 300;
+    }
+
+    /* Navigation Styles */
+    nav {
+      background-color: #34495e;
+      padding: 10px 20px;
+      text-align: center;
+    }
+
+    nav a {
+      color: white;
+      margin: 0 20px;
+      font-size: 1.2rem;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #1abc9c;
+    }
+
+    /* Main Content Styles */
+    main {
+      padding: 50px 20px;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 40px;
+    }
+
+    /* Feature Section */
+    .features {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      gap: 30px;
+    }
+
+    .feature {
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      padding: 30px;
+      flex: 1;
+      min-width: 300px;
+      transition: transform 0.3s ease;
+    }
+
+    .feature:hover {
+      transform: translateY(-10px);
+    }
+
+    .feature h3 {
+      font-size: 1.7rem;
+      margin-bottom: 20px;
+    }
+
+    .feature p {
+      font-size: 1.2rem;
+      line-height: 1.6;
+    }
+
+    .feature a {
+      display: inline-block;
+      margin-top: 20px;
+      color: #1abc9c;
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: color 0.3s ease;
+    }
+
+    .feature a:hover {
+      color: #16a085;
+    }
+
+    /* Image Carousel */
+    .carousel-container {
+      width: 100%;
+      margin-top: 40px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .carousel-images {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+    }
+
+    .carousel-images img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+
+    .carousel-links {
+      position: absolute;
+      top: 50%;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      transform: translateY(-50%);
+    }
+
+    .carousel-links a {
+      background-color: rgba(0, 0, 0, 0.5);
+      color: white;
+      padding: 10px;
+      border-radius: 50%;
+      font-size: 1.5rem;
+      transition: background-color 0.3s ease;
+    }
+
+    .carousel-links a:hover {
+      background-color: rgba(0, 0, 0, 0.8);
+    }
+
+    /* Call to Action */
+    .cta {
+      background-color: #16a085;
+      color: white;
+      padding: 40px 20px;
+      text-align: center;
+      border-radius: 8px;
+      margin: 60px 0;
+    }
+
+    .cta h2 {
+      font-size: 2.5rem;
+    }
+
+    .cta p {
+      font-size: 1.2rem;
+      font-weight: 300;
+      margin-bottom: 20px;
+    }
+
+    .cta button {
+      background-color: #fff;
+      color: #16a085;
+      border: none;
+      padding: 15px 40px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      border-radius: 50px;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .cta button:hover {
+      background-color: #16a085;
+      color: white;
+    }
+
+    /* Footer */
+    footer {
+      background-color: #34495e;
+      color: white;
+      padding: 20px 0;
+      text-align: center;
+    }
+
+    footer p {
+      font-size: 1rem;
+    }
+
+    footer a {
+      color: #1abc9c;
+      font-weight: 600;
+    }
+
+    footer a:hover {
+      color: #16a085;
+    }
+
+    /* Media Queries */
+    @media (max-width: 768px) {
+      .features {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header Section -->
+  <header>
+    <h1>AI-Driven Educational Platform</h1>
+    <p>Transforming the way students learn, with personalized pathways and emotional well-being.</p>
+  </header>
+
+  <!-- Navigation -->
+  <nav>
+    <a href="#features">Features</a>
+    <a href="#technology">Technology</a>
+    <a href="#cta">Get Started</a>
+  </nav>
+
+  <!-- Main Content -->
+  <main>
+    <section id="features">
+      <h2 class="section-title">Platform Features</h2>
+      <div class="features">
+        <div class="feature">
+          <h3>Dynamic Learning Pathways</h3>
+          <p>AI adapts to your learning style and pace to create personalized educational experiences.</p>
+          <a href="#">Learn more</a>
+        </div>
+        <div class="feature">
+          <h3>Real-time Engagement Monitoring</h3>
+          <p>Analyze emotional states and cognitive load in real-time to optimize learning engagement.</p>
+          <a href="#">Learn more</a>
+        </div>
+        <div class="feature">
+          <h3>Privacy & Ethics</h3>
+          <p>We prioritize your privacy and ensure ethical handling of your data at all times.</p>
+          <a href="#">Learn more</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="technology">
+      <h2 class="section-title">Cutting-edge Technology</h2>
+      <p>Our platform integrates multiple sensors like eye-tracking, facial expression analysis, and speech pattern recognition to ensure an optimal, adaptive learning experience. With AI-powered algorithms, the platform personalizes content delivery based on the student's emotional and cognitive state.</p>
+    </section>
+
+    <!-- Image Carousel Section -->
+    <section class="carousel-container">
+      <div class="carousel-images">
+        <img src="https://via.placeholder.com/1200x600?text=Image+1" alt="Image 1" />
+        <img src="https://via.placeholder.com/1200x600?text=Image+2" alt="Image 2" />
+      </div>
+      <div class="carousel-links">
+        <a href="#" id="prev" onclick="moveCarousel(-1)">&#10094;</a>
+        <a href="#" id="next" onclick="moveCarousel(1)">&#10095;</a>
+      </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section id="cta" class="cta">
+      <h2>Ready to Revolutionize Your Learning Experience?</h2>
+      <p>Sign up today and start your personalized learning journey!</p>
+      <button onclick="window.location.href='#'">Get Started</button>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 AI-Driven Educational Platform. All Rights Reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+  </footer>
+
+  <script>
+    // Image carousel functionality
+    let currentSlide = 0;
+
+    function moveCarousel(direction) {
+      const slides = document.querySelectorAll('.carousel-images img');
+      currentSlide += direction;
+      if (currentSlide < 0) currentSlide = slides.length - 1;
+      if (currentSlide >= slides.length) currentSlide = 0;
+      const newTransform = translateX(-${currentSlide * 100}%);
+      document.querySelector('.carousel-images').style.transform = newTransform;
+    }
+  </script>
+</body>
+</html>

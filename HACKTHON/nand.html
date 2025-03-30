@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduAdapt - AI-Powered Learning</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        
+        :root {
+            --primary-color: #4e6bff;
+            --secondary-color: #ff6b6b;
+            --dark-color: #2c3e50;
+            --light-color: #f8f9fa;
+            --success-color: #28a745;
+            --warning-color: #ffc107;
+            --danger-color: #dc3545;
+            --gray-color: #6c757d;
+            --white-color: #ffffff;
+            --black-color: #000000;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--white-color);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--dark-color);
+        }
+
+        .logo h1 span {
+            color: var(--primary-color);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 30px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--dark-color);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover,
+        nav ul li.active a {
+            color: var(--primary-color);
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn {
+            padding: 8px 20px;
+            border-radius: 5px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: var(--white-color);
+            border: 2px solid var(--primary-color);
+        }
+
+        .btn-primary:hover {
+            background-color: transparent;
+            color: var(--primary-color);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary-color);
+            color: var(--white-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 150px 0 80px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+
+        .hero .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .hero-content {
+            flex: 1;
+            padding-right: 50px;
+        }
+
+        .hero-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--dark-color);
+        }
+
+        .hero-content p {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            color: var(--gray-color);
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .hero-image {
+            flex: 1;
+            text-align: center;
+        }
+
+        .hero-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Features Carousel */
+        .features-carousel {
+            padding: 80px 0;
+            text-align: center;
+            background-color: var(--white-color);
+        }
+
+        .features-carousel h3 {
+            font-size: 2rem;
+            margin-bottom: 50px;
+            color: var(--dark-color);
+        }
+
+        .carousel-container {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        .carousel-slide {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .carousel-item {
+            min-width: 100%;
+            padding: 0 50px;
+            text-align: center;
+        }
+
+        .carousel-item img {
+            width: 150px;
+            height: 150px;
+            object-fit: contain;
+            margin-bottom: 20px;
+        }
+
+        .carousel-item h4 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: var(--white-color);
+            border: none;
+            padding: 15px;
+            cursor: pointer;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            z-index: 10;
+            transition: background-color 0.3s;
+        }
+
+        .carousel-btn:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .prev {
+            left: 20px;
+        }
+
+        .next {
+            right: 20px;
+        }
+
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            margin: 0 5px;
+            background-color: #bbb;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .dot.active {
+            background-color: var(--primary-color);
+        }
+
+        /* Benefits Grid */
+        .benefits-grid {
+            padding: 80px 0;
+            background-color: var(--light-color);
+            text-align: center;
+        }
+
+        .benefits-grid h3 {
+            font-size: 2rem;
+            margin-bottom: 50px;
+            color: var(--dark-color);
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 0 20px;
+        }
+
+        .grid-item {
+            background-color: var(--white-color);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .grid-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .grid-item i {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .grid-item h4 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--dark-color);
+        }
+
+        .grid-item p {
+            color: var(--gray-color);
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 80px 0;
+            background-color: var(--white-color);
+            text-align: center;
+        }
+
+        .testimonials h3 {
+            font-size: 2rem;
+            margin-bottom: 50px;
+            color: var(--dark-color);
+        }
+
+        .testimonial-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .testimonial {
+            flex: 1;
+            min-width: 300px;
+            max-width: 500px;
+            background-color: var(--light-color);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .testimonial img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+            border: 3px solid var(--primary-color);
+        }
+
+        .testimonial p {
+            font-style: italic;
+            margin-bottom: 20px;
+            color: var(--dark-color);
+        }
+
+        .testimonial h5 {
+            color: var(--primary-color);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: var(--white-color);
+            padding: 60px 0 0;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h4 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: var(--white-color);
+        }
+
+        .footer-section p {
+            margin-bottom: 15px;
+            color: #bbb;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section ul li a {
+            color: #bbb;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section ul li a:hover {
+            color: var(--primary-color);
+        }
+
+        .footer-section i {
+            margin-right: 10px;
+            color: var(--primary-color);
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-icons a {
+            color: var(--white-color);
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+
+        .social-icons a:hover {
+            color: var(--primary-color);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding: 20px 0;
+            border-top: 1px solid #444;
+        }
+
+        .footer-bottom p {
+            color: #bbb;
+            font-size: 0.9rem;
+        }
+
+        .footer-bottom a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .hero .container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .hero-content {
+                padding-right: 0;
+                margin-bottom: 40px;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            nav ul {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                padding: 120px 0 60px;
+            }
+
+            .hero-content h2 {
+                font-size: 2rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+
+            .auth-buttons {
+                display: none;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero-content h2 {
+                font-size: 1.8rem;
+            }
+
+            .carousel-item {
+                padding: 0 20px;
+            }
+
+            .carousel-item img {
+                width: 100px;
+                height: 100px;
+            }
+
+            .grid-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+
+        .quiz-section {
+        padding: 80px 0;
+        background-color: var(--light-color);
+        text-align: center;
+    }
+
+    .quiz h3 {
+        font-size: 2rem;
+        margin-bottom: 50px;
+        color: var(--dark-color);
+    }
+
+    .quiz-question {
+        margin-bottom: 30px;
+        text-align: left;
+        font-size: 1.2rem;
+    }
+
+    .quiz-options label {
+        display: block;
+        margin-bottom: 10px;
+        font-size: 1.1rem;
+    }
+
+    .quiz-buttons {
+        margin-top: 30px;
+    }
+
+    .quiz-result {
+        display: none;
+        margin-top: 30px;
+    }
+
+    .quiz-result p {
+        font-size: 1.1rem;
+        color: var(--dark-color);
+    }
+
+    body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .quiz-section {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .question {
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+            color: #444;
+        }
+
+        .answers {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .answers li {
+            margin-bottom: 10px;
+        }
+
+        .answer {
+            padding: 10px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .answer:hover {
+            background-color: #e9e9e9;
+        }
+
+        .feedback {
+            font-size: 1rem;
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .correct {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .incorrect {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        .instruction {
+            font-size: 1.1rem;
+            margin-top: 30px;
+            color: #444;
+        }
+
+        .instruction p {
+            font-size: 1.1rem;
+            margin-top: 15px;
+        }
+
+        .btn {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="https://miro.medium.com/v2/resize:fit:1400/1*aSC3odScNMyz7Y6MZvqJ1Q.jpeg" alt="EduAdapt Logo">
+                <h1>Edu<span>Adapt</span></h1>
+            </div>
+            <nav>
+                <ul>
+                    <li class="active"><a href="index.html">Face Analysis</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#ado">Features</a></li>
+                    <li><a href="#about">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="auth-buttons">
+                <a href="#" class="btn btn-outline">Login</a>
+                <a href="#" class="btn btn-primary">Sign Up</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h2>Personalized Learning Powered by AI</h2>
+                    <p>EduAdapt dynamically adjusts to your learning style, pace, and emotional state for optimal knowledge retention and engagement.</p>
+                    <div class="hero-buttons">
+                        <a href="#" class="btn btn-primary">Get Started</a>
+                        <a href="#" class="btn btn-outline">Learn More</a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <img src="
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Carousel -->
+        <section class="features-carousel">
+            <h3>How EduAdapt Works</h3>
+            <div class="carousel-container">
+                <div class="carousel-slide">
+                    <div class="carousel-item">
+                        <img src="     data:image/jpeg;base64,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   " alt =" AI learning platform "
+                        <h4>Real-time Engagement Tracking</h4>
+                        <p>Our system monitors your focus and engagement through eye-tracking and facial analysis.</p>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="       https://ggba.swiss/app/uploads/2024/02/Eyeware-Beam-AI_1180x811-1.png  " alt="Eye Tracking"
+                        <h4>Dynamic Content Adjustment</h4>
+                        <p>Learning materials adapt in real-time based on your cognitive load and comprehension.</p>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://efr.org/wp-content/uploads/2024/05/emotional-wellbeing-balance.png" alt="Emotional Support">
+                        <h4>Emotional Well-being Focus</h4>
+                        <p>The system detects frustration or confusion and provides appropriate support.</p>
+                    </div>
+                </div>
+                <button class="carousel-btn prev">&#10094;</button>
+                <button class="carousel-btn next">&#10095;</button>
+            </div>
+            <div class="carousel-dots">
+                <span class="dot active"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </div>
+        </section>
+
+        <!-- Benefits Grid -->
+        <section class="benefits-grid">
+            <h3 id="ado">Why Choose EduAdapt?</h3>
+            <div class="grid-container">
+                <div class="grid-item">
+                    <i class="fas fa-brain"></i>
+                    <h4>Cognitive Load Optimization</h4>
+                    <p>Content delivery adapts to prevent overload and maximize retention.</p>
+                </div>
+                <div class="grid-item">
+                    <i class="fas fa-heart"></i>
+                    <h4>Emotional Intelligence</h4>
+                    <p>Recognizes when you're frustrated and adjusts accordingly.</p>
+                </div>
+                <div class="grid-item">
+                    <i class="fas fa-chart-line"></i>
+                    <h4>Personalized Pathways</h4>
+                    <p>Creates unique learning journeys based on your strengths and weaknesses.</p>
+                </div>
+                <div class="grid-item">
+                    <i class="fas fa-shield-alt"></i>
+                    <h4>Privacy-First Approach</h4>
+                    <p>All data is anonymized and encrypted with the highest security standards.</p>
+                </div>
+                <div class="grid-item">
+                    <i class="fas fa-gamepad"></i>
+                    <h4>Gamified Learning</h4>
+                    <p>Maintains motivation through adaptive challenges and rewards.</p>
+                </div>
+                <div class="grid-item">
+                    <i class="fas fa-users"></i>
+                    <h4>Educator Insights</h4>
+                    <p>Provides teachers with detailed analytics on student progress.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials -->
+        <section class="testimonials">
+            <h3>What Our Users Say</h3>
+            <div class="testimonial-container">
+                <div class="testimonial">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtWFov2ItskuigWkP-y3VqBMMbFr7Qq7PvnA&s" alt="Student">
+                    <p>"EduAdapt understood when I was struggling and changed the way it presented the material. It felt like having a personal tutor!"</p>
+                    <h5>- Sarah, High School Student</h5>
+                </div>
+                <div class="testimonial">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBGfDK6rAKdwkvpEQEYIYSP7-e3mENyNRo-w&s" alt="Teacher">
+                    <p>"The insights I get about my students' learning patterns are invaluable. I can now support each one exactly where they need it."</p>
+                    <h5>- Mr. Johnson, Math Teacher</h5>
+                </div>
+            </div>
+        </section>
+        <body>
+
+            <div class="container">
+                <h1>Quiz Section</h1>
+                <div class="quiz-section">
+                    <div class="question">
+                        <p>1. What is the capital of France?</p>
+                        <ul class="answers">
+                            <li class="answer" onclick="checkAnswer('a')">A) Madrid</li>
+                            <li class="answer" onclick="checkAnswer('b')">B) Paris</li>
+                            <li class="answer" onclick="checkAnswer('c')">C) Rome</li>
+                            <li class="answer" onclick="checkAnswer('d')">D) Berlin</li>
+                        </ul>
+                        <div id="feedback" class="feedback"></div>
+                    </div>
+                </div>
+        
+                <div class="instruction">
+                    <h2>Instructions for those who are unable to answer:</h2>
+                    <p>If you were unable to answer correctly, don't worry! Here's how you can improve:</p>
+                    <ul>
+                        <li>Review the study material again to understand the concepts better.</li>
+                        <li>Use resources like online tutorials and educational videos for more clarity.</li>
+                        <li>Try practicing similar questions to strengthen your understanding.</li>
+                    </ul>
+                </div>
+        
+                <div class="next-button">
+                    <button class="btn">Next Question</button>
+                </div>
+            </div>
+
+        
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>EduAdapt</h4>
+                    <p>Revolutionizing education through adaptive AI technology that responds to each learner's unique needs.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="features.html">Features</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Us</h4>
+                    <p><i class="fas fa-envelope"></i> info@eduadapt.com</p>
+                    <p><i class="fas fa-phone"></i> (555) 123-4567</p>
+                    <div class="social-icons">
+                        <a href="https://www.facebook.com/"><i class="fab fa-facebook"></i></a>
+                        <a href="https://x.com/?lang=en"><i class="fab fa-twitter"></i></a>
+                        <a href="https://in.linkedin.com/"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom" id="about">
+                <p>&copy; 2023 EduAdapt. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // JavaScript for Carousel Functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const slide = document.querySelector('.carousel-slide');
+            const items = document.querySelectorAll('.carousel-item');
+            const dots = document.querySelectorAll('.dot');
+            const prevBtn = document.querySelector('.prev');
+            const nextBtn = document.querySelector('.next');
+            
+            let currentIndex = 0;
+            const itemCount = items.length;
+            
+            // Set initial position
+            updateCarousel();
+            
+            // Next button click
+            nextBtn.addEventListener('click', function() {
+                currentIndex = (currentIndex + 1) % itemCount;
+                updateCarousel();
+            });
+            
+            // Previous button click
+            prevBtn.addEventListener('click', function() {
+                currentIndex = (currentIndex - 1 + itemCount) % itemCount;
+                updateCarousel();
+            });
+            
+            // Dot navigation
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', function() {
+                    currentIndex = index;
+                    updateCarousel();
+                });
+            });
+            
+            // Auto-advance carousel
+            let carouselInterval = setInterval(() => {
+                currentIndex = (currentIndex + 1) % itemCount;
+                updateCarousel();
+            }, 5000);
+            
+            // Pause on hover
+            const carouselContainer = document.querySelector('.carousel-container');
+            carouselContainer.addEventListener('mouseenter', () => {
+                clearInterval(carouselInterval);
+            });
+            
+            carouselContainer.addEventListener('mouseleave', () => {
+                carouselInterval = setInterval(() => {
+                    currentIndex = (currentIndex + 1) % itemCount;
+                    updateCarousel();
+                }, 5000);
+            });
+            
+            // Update carousel position and dots
+            function updateCarousel() {
+                slide.style.transform = translateX(-${currentIndex * 100}%);
+                
+                // Update dots
+                dots.forEach((dot, index) => {
+                    if (index === currentIndex) {
+                        dot.classList.add('active');
+                    } else {
+                        dot.classList.remove('active');
+                    }
+                });
+            }
+            
+            // Mobile menu toggle (would need additional HTML)
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+      <script>
+        function checkAnswer(answer) {
+            const feedbackElement = document.getElementById('feedback');
+
+            // Correct answer is 'b'
+            if (answer === 'b') {
+                feedbackElement.textContent = "Correct! Paris is the capital of France.";
+                feedbackElement.className = "feedback correct";
+            } else {
+                feedbackElement.textContent = "Incorrect. The correct answer is Paris.";
+                feedbackElement.className = "feedback incorrect";
+            }
+        }
+    </script>
+</body>
+</html>

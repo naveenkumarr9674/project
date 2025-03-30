@@ -1,0 +1,74 @@
+import React from 'react';
+import { Button } from "@/components/ui/button";
+import { ArrowRight, Brain, LineChart, Lightbulb, Shield, Gauge, Sparkles } from 'lucide-react';
+
+const featuresData = [
+  {
+    icon: Brain,
+    title: "Cognitive Load Monitoring",
+    description: "AI-powered analysis of engagement patterns"
+  },
+  {
+    icon: LineChart,
+    title: "Real-time Adaptation",
+    description: "Dynamic learning material adjustments"
+  },
+  {
+    icon: Lightbulb,
+    title: "Personalized Insights",
+    description: "Customized learning recommendations"
+  }
+];
+
+const Index = () => {
+  return (
+    <div className="min-h-screen bg-gradient-to-b from-adaptiva-blue-50 to-white">
+      <nav className="container mx-auto py-6 flex justify-between items-center">
+        <div className="flex items-center space-x-2">
+          <Brain className="h-8 w-8 text-adaptiva-blue-600" />
+          <span className="font-bold text-2xl text-adaptiva-blue-700">adaptiva</span>
+        </div>
+        <div className="space-x-4">
+          <Button variant="outline">Login</Button>
+          <Button>Get Started</Button>
+        </div>
+      </nav>
+
+      <main className="container mx-auto text-center py-20 space-y-12">
+        <section>
+          <h1 className="text-5xl font-bold mb-6">
+            Learning that <span className="gradient-text">adapts</span> to you
+          </h1>
+          <p className="text-xl text-adaptiva-neutral-700 max-w-2xl mx-auto mb-8">
+            AI-driven platform personalizing your educational journey through advanced cognitive analysis
+          </p>
+          <div className="flex justify-center space-x-4">
+            <Button size="lg" className="bg-adaptiva-blue-600">
+              Start Learning <ArrowRight className="ml-2" />
+            </Button>
+            <Button size="lg" variant="outline">Watch Demo</Button>
+          </div>
+        </section>
+
+        <section className="grid md:grid-cols-3 gap-8">
+          {featuresData.map((feature, index) => (
+            <div 
+              key={index} 
+              className="bg-white border rounded-xl p-6 hover:shadow-lg transition-all"
+            >
+              <feature.icon className="h-12 w-12 text-adaptiva-blue-600 mx-auto mb-4" />
+              <h3 className="text-xl font-semibold mb-3">{feature.title}</h3>
+              <p className="text-adaptiva-neutral-700">{feature.description}</p>
+            </div>
+          ))}
+        </section>
+      </main>
+
+      <footer className="text-center py-8 text-adaptiva-neutral-600">
+        © 2024 Adaptiva. Transforming Education through AI.
+      </footer>
+    </div>
+  );
+};
+
+export default Index;

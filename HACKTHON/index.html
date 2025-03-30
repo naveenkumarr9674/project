@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Facial Analysis</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <h1>Facial Analysis</h1>
+    </div>
+  </header>
+
+  <section id="upload-section">
+    <h2>Upload a Photo</h2>
+    <input type="file" id="image-upload" accept="image/*" onchange="handleFileSelect(event)">
+    <div id="image-container">
+      <img id="uploaded-image" src="" alt="Uploaded Image" />
+    </div>
+  </section>
+
+  <section id="results-section" class="hidden">
+    <h2>Analysis Results</h2>
+    <div id="analysis-results">
+      <!-- Dynamic content will go here -->
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Facial Analysis Project | All Rights Reserved</p>
+  </footer>
+
+  <script src="java.js"></script>
+</body>
+</html>
